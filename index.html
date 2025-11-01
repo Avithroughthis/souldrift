@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SoulDrift — Companion</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <main class="hero" role="main">
+    <!-- Backgrounds -->
+    <div class="background bg1"></div>
+    <div class="background bg2"></div>
+    <div class="overlay"></div>
+
+    <!-- Title -->
+    <header class="hero__center">
+      <h1 class="brand">SoulDrift</h1>
+    </header>
+
+    <!-- Companion + Chat (hidden initially) -->
+    <div class="companion hidden" id="companionWrapper">
+      <div class="companion-inner">
+        <!-- Chat area (messages go here) -->
+        <div class="chat-container" id="chatContainer" aria-live="polite"></div>
+
+        <!-- Companion GIF centered below the chat -->
+        <img
+          src="assets/companion/calm.gif"
+          alt="Companion"
+          class="companion-gif"
+          id="companionGif"
+        />
+
+        <!-- Input area under companion -->
+        <div class="mood-input">
+          <input type="text" id="moodText" placeholder="Type how you feel..." />
+          <button id="submitMood">Send</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
