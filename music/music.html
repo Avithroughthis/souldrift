@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cassette Mood Player</title>
+  <link rel="stylesheet" href="music.css" />
+</head>
+<body>
+  <main class="player-root">
+    <header class="player-header">
+      <h1 class="brand">SoulDrift Cassette</h1>
+      <p id="moodStatus" class="mood-status">Detecting mood…</p>
+    </header>
+
+    <section class="cassette" aria-label="Cassette player">
+      <div class="cassette-window">
+        <div class="reel reel-left">
+          <div class="wheel"></div>
+        </div>
+
+        <div class="artwork-area">
+          <img id="albumArt" src="" alt="Album art" />
+          <div id="tapeOverlay" class="tape-overlay"></div>
+        </div>
+
+        <div class="reel reel-right">
+          <div class="wheel"></div>
+        </div>
+      </div>
+
+      <div class="cassette-body">
+        <div class="track-info">
+          <div id="trackTitle" class="track-title">—</div>
+          <div id="trackArtist" class="track-artist">—</div>
+        </div>
+
+        <div class="controls">
+          <button id="prevBtn" title="Previous">⏮</button>
+          <button id="playBtn" title="Play / Pause">▶</button>
+          <button id="nextBtn" title="Next">⏭</button>
+          <button id="shuffleBtn" title="Shuffle">🔀</button>
+        </div>
+
+        <div class="progress-row">
+          <input id="progress" type="range" min="0" max="100" value="0" />
+          <div class="time">
+            <span id="pos">0:00</span> / <span id="dur">0:30</span>
+          </div>
+        </div>
+
+        <div class="up-next">
+          <h4>Up next</h4>
+          <ol id="upNextList"></ol>
+        </div>
+      </div>
+    </section>
+
+    <div id="spotifyEmbed" class="spotify-embed hidden"></div>
+  </main>
+
+  <script src="music.js"></script>
+</body>
+</html>

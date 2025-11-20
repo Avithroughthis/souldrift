@@ -1,0 +1,200 @@
+body {
+    background-color: #f2e0d2;
+    background-size: 1700px;
+    background-blend-mode: lighten;
+    text-align: center;
+    font-family: "kindegarten", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #9e182b;
+}
+
+#backButton {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    background-color: #f2e0d2;
+    border: 2px solid #9e182b;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #9e182b;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 0px rgba(158, 24, 43, 0.25);
+}
+
+#backButton:hover {
+    background-color: #f9cbd6;
+    transform: translateY(-3px);
+}
+
+#backButton:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+#title {
+    margin-top: 80px;
+    font-size: 42px;
+    color: #9e182b;
+}
+
+#subtitle {
+    opacity: 0.8;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #9e182b;
+}
+
+#smartSuggestionBox {
+    margin: 20px auto 10px auto;
+    width: 60%;
+    padding: 20px;
+    border-radius: 20px;
+    background: #f2e0d2;
+    border: 2px solid #9e182b;
+    box-shadow: 0 4px 8px rgba(158,24,43,0.25);
+    animation: fadeUp 0.8s ease;
+}
+
+#smartSuggestion {
+    font-size: 18px;
+    color: #9e182b;
+}
+
+#analyticsCard {
+    margin: 10px auto 30px auto;
+    width: 60%;
+    padding: 15px;
+    border-radius: 14px;
+    background-color: #f2afbc;
+    border: 2px solid #9e182b;
+    color: #9e182b;
+    box-shadow: 0 4px 8px rgba(158,24,43,0.25);
+    text-align: left;
+    font-family: monospace;
+}
+
+#calendarContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#calendarDiv {
+    background-color: #f2e0d2;
+    border-radius: 12px;
+    border: 2px solid #9e182b;
+    text-align: center;
+    padding-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(158,24,43,0.25);
+}
+
+#calendarHeading {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-radius: 10px 10px 0 0;
+    background-color: #f2afbc;
+    border-bottom: 2px solid #9e182b;
+    color: #9e182b;
+    font-size: 20px;
+}
+
+#calendarContent {
+    padding: 20px;
+}
+
+.days {
+    display: flex;
+    justify-content: center;
+}
+
+.day {
+    width: 36px;
+    height: 36px;
+    margin: 4px;
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #f2afbc;
+    background-color: #f9cbd6;
+    color: #9e182b;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.day:hover {
+    background-color: #f2afbc;
+    border-color: #9e182b;
+    transform: translateY(-2px);
+}
+
+.day-filled {
+    background-color: #9e182b;
+    color: #f2e0d2 !important;
+    border-color: #9e182b;
+}
+
+.day-empty {
+    background-color: #f2e0d2;
+    border-color: #f2afbc;
+}
+
+.today {
+    border: 2px solid #9e182b !important;
+    color: #9e182b !important;
+}
+
+#resetButton {
+    background-color: #f2afbc;
+    border: 2px solid #9e182b;
+    border-radius: 20px;
+    padding: 10px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #9e182b;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 0px rgba(158,24,43,0.25);
+    margin: 10px auto;
+}
+
+#resetButton:hover {
+    background-color: #9e182b;
+    color: #f2e0d2;
+    transform: translateY(-2px);
+}
+
+#resetButton:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+#pastMonthsPanel {
+    position: fixed;
+    top: 120px;
+    left: 20px;
+    width: 200px;
+    background-color: #f2e0d2;
+    border: 2px solid #9e182b;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(158,24,43,0.25);
+    font-family: monospace;
+}
+
+#pastMonthsPanel div {
+    padding: 6px;
+    margin-bottom: 4px;
+    background-color: #f9cbd6;
+    border: 1px solid #9e182b;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    color: #9e182b;
+}
+
+#pastMonthsPanel div:hover {
+    background-color: #f2afbc;
+}

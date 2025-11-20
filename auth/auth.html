@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoulDrift — Auth</title>
+  <link rel="stylesheet" href="auth.css">
+  <link href="https:
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <!-- Header Strip -->
+  <header class="auth-header">
+    <button id="backButton" class="back-button">&#8592; Back</button>
+    <h1>SoulDrift</h1>
+  </header>
+
+  <div class="auth-container">
+    <!-- Log In Form -->
+    <form id="loginForm" class="login-form">
+      <h2>Log In</h2>
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Log In</button>
+      <p class="toggle">Don't have an account? <span id="showSignup">Sign Up</span></p>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signupForm" class="signup-form">
+      <h2>Sign Up</h2>
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+      <button type="submit">Sign Up</button>
+      <p class="toggle">Already have an account? <span id="showLogin">Log In</span></p>
+    </form>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

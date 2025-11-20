@@ -1,0 +1,217 @@
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    background-color: #f2afbc;
+    border: 2px solid #9e182b;
+    color: #9e182b;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 16px;
+    font-family: "kindegarten", sans-serif;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 0px rgba(0,0,0,0.2);
+    transition: 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #f9cbd6;
+    transform: translateY(-2px);
+}
+
+.back-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0px rgba(0,0,0,0.2);
+}
+
+body {
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: url("../journal/J/journal_bg.png") no-repeat center center fixed;
+  background-size: cover;
+  color:#2b2340;
+  -webkit-font-smoothing:antialiased;
+}
+
+*{box-sizing:border-box}
+
+.page{
+  max-width:980px;
+  margin:16px auto 120px;
+  padding:18px;
+  margin-top: 120px;
+}
+
+/* header */
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.brand{font-size:26px;color:var(--accent);margin:0;font-weight:700}
+.tagline{margin:2px 0 0;font-size:12px;color:var(--muted)}
+
+.snapshot{background:linear-gradient(90deg,rgba(143,115,255,0.12),rgba(143,115,255,0.05));padding:8px 12px;border-radius:10px;text-align:right}
+.snap-value{font-weight:700}
+.snap-label{font-size:11px;color:var(--muted)}
+
+/* calendar */
+.calendar-section h2{font-size:15px;margin:8px 0;color:var(--muted)}
+.calendar-row{display:flex;gap:10px;overflow-x:auto;padding:8px 2px 12px}
+.calendar-row::-webkit-scrollbar{height:8px}
+.calendar-row::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.06);border-radius:8px}
+
+.day {
+  width: 62px;
+  height: 82px;
+  border-radius: 12px;
+  overflow: hidden; /* important: prevents image from spilling out */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* optional, centers image */
+  padding-top: 0; /* remove extra padding if needed */
+  gap: 6px;
+  box-shadow: 0 8px 20px rgba(30,22,60,0.06);
+  cursor: pointer;
+  flex: 0 0 auto;
+  position: relative;
+  transition: transform .15s ease, box-shadow .15s;
+}
+.day:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(30,22,60,0.08)}
+.day span{font-size:14px;color:#222;font-weight:600}
+.day img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fills container while keeping aspect ratio */
+  border-radius: 0; /* optional, already clipped by parent */
+  display: block;
+}
+.day.active{outline:3px solid rgba(143,115,255,0.12)}
+
+/* mascot */
+.mascot-section{text-align:center;margin:16px 0}
+.otter-img{width:200px;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+#statusText{margin-top:6px;font-size:16px;font-weight:600;color:#2b2340}
+
+/* popup (prettier) */
+.day-journal-popup{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(rgba(6,6,6,0.18),rgba(6,6,6,0.18));z-index:9999;padding:20px}
+.day-journal-popup.hidden{display:none}
+.popup-box{width:100%;max-width:520px;background:linear-gradient(180deg,white,#fbf9ff);border-radius:14px;padding:16px;box-shadow:0 18px 40px rgba(8,6,30,0.12)}
+.popup-head{display:flex;justify-content:space-between;align-items:center}
+.popup-head h3{margin:0;font-size:18px}
+.close-btn{background:transparent;border:0;font-size:18px;cursor:pointer;color:var(--muted)}
+
+#popupJournalText{width:100%;min-height:120px;border-radius:12px;border:1px solid #efecf8;padding:12px;font-size:14px;margin-top:12px;resize:vertical;outline:none}
+#popupJournalText:focus{box-shadow:0 6px 20px rgba(143,115,255,0.08);border-color:rgba(143,115,255,0.22)}
+
+.mood-row{display:flex;align-items:center;justify-content:space-between;margin:10px 0}
+.mood-hint{font-size:12px;color:var(--muted)}
+.mood-buttons{display:flex;gap:8px}
+.mood-btn{background:#f4f3ff;border:0;padding:8px 12px;border-radius:10px;font-size:18px;cursor:pointer;transition:transform .12s ease,background .12s;box-shadow:0 6px 18px rgba(20,14,40,0.04)}
+.mood-btn:hover{transform:translateY(-3px)}
+.mood-btn.selected{background:linear-gradient(90deg,#bda8ff,#d7c8ff);transform:scale(1.06)}
+.mood-btn.clear{background:#fff6f6}
+
+.actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.btn{padding:8px 12px;border-radius:10px;border:0;cursor:pointer}
+.btn.primary{background:var(--accent);color:white}
+.btn.danger{background:var(--danger);color:white}
+
+/* ml status */
+.ml-status{margin-top:10px;font-size:13px;color:var(--muted)}
+
+/* analytics */
+.analytics{margin-top:18px}
+.analytics h2{margin:0 0 8px;font-size:16px}
+.analytics-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:12px}
+.analytic-card{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 10px 30px rgba(10,6,30,0.05)}
+.analytic-card h4{margin:0;font-size:13px;color:var(--muted)}
+.analytic-value{font-size:18px;font-weight:700;margin-top:8px}
+.chart-wrap{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 8px 20px rgba(10,6,30,0.06)}
+.analytics-text{margin-top:10px;color:var(--muted);font-size:14px}
+
+/* companion reply */
+.companion-reply{position:fixed;left:50%;transform:translateX(-50%);bottom:36px;background:linear-gradient(90deg,#ffffff, #fbf9ff);padding:10px 16px;border-radius:20px;box-shadow:0 8px 30px rgba(20,14,40,0.08);font-weight:600;color:#2b2340;display:none}
+.companion-reply.show{display:block;animation:pop 0.35s ease}
+@keyframes pop{from{transform:translate(-50%,10px) scale(0.96);opacity:0}to{transform:translate(-50%,0) scale(1);opacity:1}}
+
+/* responsive */
+@media (max-width:720px){
+  .page{padding:12px}
+  .popup-box{padding:12px}
+  .otter-img{width:120px}
+  .day{width:56px;height:74px}
+}
+
+/* Fullscreen dark overlay */
+.cute-error-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999999;
+}
+
+.cute-error-overlay.hidden {
+  display: none;
+}
+
+/* Popup window */
+.cute-error-window {
+  position: relative;
+  width: 420px;       /* bigger box */
+  height: auto;
+  padding: 0;
+  animation: popIn 0.25s ease-out;
+}
+
+/* Your PNG — controls full popup look */
+.cute-error-bg {
+  width: 100%;
+  height: auto;
+  border-radius: 90px;
+  pointer-events: none; /* so clicks go to button */
+}
+
+/* OK button placed on the PNG */
+.cute-error-ok {
+  position: absolute;
+  bottom: 30px;        /* adjust this to match your PNG layout */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 34px;
+  background: #8c6262;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cute-error-ok:hover {
+  transform: translateX(-50%) scale(1.06);
+  background: #cb9494;
+}
+/* scale animation */
+@keyframes popIn {
+  0% { transform: scale(0.75); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Make ONLY the UI cards white */
+.day,
+.snapshot,
+.popup-box,
+.analytic-card,
+.chart-wrap,
+.companion-reply {
+    background: #f2eae5 !important;
+}
+
+#sentimentChart {
+  width: 100%;
+  height: 250px;   /* REQUIRED */
+}

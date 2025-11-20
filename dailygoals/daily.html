@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Daily — Vintage Goals</title>
+  <link rel="stylesheet" href="daily.css">
+</head>
+<body>
+  <main class="wrap">
+    <div class="mainContent">
+      <!-- User profile panel -->
+      <aside class="userPanel">
+        <div class="profilePhoto">
+          <img id="profileImg" src="../dailygoals/dailyimg/icon.png" alt="Profile Photo">
+        </div>
+        <h2 id="profileUsername">@Guest</h2>
+        <div class="stats">
+          <div><b>Level:</b> <span id="statLevel">1</span></div>
+          <div><b>XP:</b> <span id="statXP">0</span></div>
+          <div><b>Streak:</b> <span id="statStreak">0</span></div>
+          <div><b>Consistency:</b> <span id="statCons">0%</span></div>
+          <div><b>Days Tracked:</b> <span id="statDays">0</span></div>
+        </div>
+      </aside>
+
+      <section class="content">
+        <header class="top">
+          <h1>Daily Goals</h1>
+          <div class="levelBox">
+            <div class="lvl">Level <span id="level">1</span></div>
+            <div class="xpBar" title="XP progress">
+              <div id="xpFill"></div>
+            </div>
+            <div class="xpText"><span id="xp">0</span> XP</div>
+          </div>
+        </header>
+
+        <section class="add">
+          <input id="newGoal" placeholder="Add a new goal (e.g. 🧋 Drink water)" />
+          <select id="difficulty">
+            <option value="1">Easy</option>
+            <option value="1.5">Medium</option>
+            <option value="2">Hard</option>
+          </select>
+          <button id="addBtn">Add</button>
+        </section>
+
+        <section class="suggestions">
+          <h2>Suggested for today</h2>
+          <ul id="suggestedList" class="goalsList"></ul>
+        </section>
+
+        <section class="today">
+          <h2>Today's goals</h2>
+          <ul id="goals" class="goalsList"></ul>
+        </section>
+
+        <footer class="foot">
+          <small>a small action can make a big change.</small>
+        </footer>
+      </section>
+    </div>
+  </main>
+
+  <script src="daily.js"></script>
+</body>
+</html>

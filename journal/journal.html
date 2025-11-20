@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SoulDrift — Mood Calendar + ML</title>
+
+  <!-- TensorFlow.js & USE -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.20.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder@1.3.3/dist/universal-sentence-encoder.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="journal.css" />
+</head>
+<body>
+  <button id="backButton" class="back-btn">← Back</button>
+  <main class="page">
+
+    <header class="top-row">
+      <div class="brand-wrap">
+        <h1 class="brand">SoulDrift</h1>
+        <p class="tagline">A gentle place to log feelings and reflect</p>
+      </div>
+
+      <div id="analyticsSnapshot" class="snapshot">
+        <div class="snap-value" id="avgSentSmall">—</div>
+        <div class="snap-label">Month avg</div>
+      </div>
+    </header>
+
+    <!-- CALENDAR -->
+    <section class="calendar-section">
+      <h2>Month Mood Calendar</h2>
+      <div class="calendar-row" id="calendarRow" aria-label="Calendar days"></div>
+    </section>
+
+    <!-- MASCOT + STATUS -->
+    <section class="mascot-section">
+      <img src="/journal/J/mascot.gif" alt="Mascot" class="otter-img" />
+      <h3 id="statusText">Tap any day to add a journal entry</h3>
+    </section>
+
+    <!-- JOURNAL POPUP -->
+    <div class="day-journal-popup hidden" id="dayJournalPopup" aria-hidden="true">
+      <div class="popup-box" role="dialog" aria-modal="true">
+        <div class="popup-head">
+          <h3 id="popupDate">Day X</h3>
+          <button id="closePopup" class="close-btn" aria-label="Close">✕</button>
+        </div>
+
+        <textarea id="popupJournalText" placeholder="Write what happened today..."></textarea>
+
+        <div class="mood-row">
+          <small class="mood-hint">Quick select mood (overrides ML)</small>
+          <div class="mood-buttons">
+            <button class="mood-btn" data-mood="happy">😊</button>
+            <button class="mood-btn" data-mood="neutral">😐</button>
+            <button class="mood-btn" data-mood="sad">☹️</button>
+            <button class="mood-btn clear" data-mood="clear">🧹</button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="saveDayJournal" class="btn primary">Save & analyze</button>
+          <button id="deleteDayJournal" class="btn danger">Delete</button>
+        </div>
+
+        <div id="mlStatus" class="ml-status">ML: <span id="mlModelState">loading model…</span></div>
+      </div>
+    </div>
+
+    <!-- ANALYTICS -->
+    <section class="analytics" id="analyticsPanel">
+      <h2>Insights</h2>
+
+      <div class="analytics-grid">
+        <div class="analytic-card">
+          <h4>Average sentiment (month)</h4>
+          <div id="avgSentiment" class="analytic-value">—</div>
+        </div>
+
+        <div class="analytic-card">
+          <h4>Last 7 days</h4>
+          <div id="last7" class="analytic-value">—</div>
+        </div>
+
+        <div class="analytic-card">
+          <h4>Entries</h4>
+          <div id="entryCount" class="analytic-value">0</div>
+        </div>
+
+        <div class="analytic-card">
+          <h4>Longest happy streak</h4>
+          <div id="streak" class="analytic-value">0</div>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <canvas id="sentimentChart" height="120"></canvas>
+      </div>
+
+      <div id="analyticsText" class="analytics-text"></div>
+    </section>
+
+    <!-- COMPANION / BOT reply (floating bubble under mascot) -->
+    <div class="companion-reply" id="companionReply" aria-live="polite"></div>
+
+  </main>
+
+  <!-- CUTE ERROR MODAL -->
+  <div id="cuteErrorOverlay" class="cute-error-overlay hidden">
+    <div class="cute-error-window">
+      <img src="/journal/J/error-bg.jpeg" class="cute-error-bg" alt="">
+      <button id="cuteErrorOk" class="cute-error-ok">OK</button>
+    </div>
+  </div>
+
+  <script src="journal.js" defer></script>
+</body>
+</html>
