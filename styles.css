@@ -1,0 +1,627 @@
+@font-face {
+  font-family: 'Ruigslay';
+  src: url('Ruigslay.woff2') format('woff2');
+  font-display: swap;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+.hero {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  justify-items: center;
+  background-image: url('');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero__center {
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  z-index: -2;
+}
+
+body {
+  margin: 0;
+  background: url('background.jpg') center/cover no-repeat fixed;
+  background-color: #e0eff9;
+  overflow: hidden;
+}
+
+.brand {
+  font-family: 'Ruigslay', serif;
+  font-size: clamp(4rem, 12vw, 12rem);
+  text-transform: lowercase;
+  position: relative;
+  padding: 10px;
+  color: #ffffff;
+  background: linear-gradient(90deg, #82c5f6, #7ab8ff, #7bc8f8);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: blueGlow 6s infinite linear;
+
+  /* Outer glow */
+  text-shadow:
+    0 0 15px rgba(255, 181, 181, 0.8),
+    0 0 35px rgba(250, 149, 149, 0.8),
+    0 0 55px rgba(255, 174, 174, 0.8);
+}
+
+/* When skipping intro, force-hide the title completely */
+.brand.skip-intro {
+  opacity: 0 !important;
+  pointer-events: none;
+  filter: none !important;
+  text-shadow: none !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* Animate the blue gradient gently */
+@keyframes blueGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Soft glow duplicate behind the text */
+.brand::before {
+  content: "SoulDrift";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  filter: blur(25px);
+  opacity: 0.6;
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Footer */
+.hero__footer {
+  z-index: 5;
+  padding: 1rem;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+}
+
+.brand {
+  font-family: 'Ruigslay', serif;
+  font-size: clamp(4rem, 12vw, 12rem);
+  position: relative;
+  text-transform: lowercase;
+  color: #ffdddd;
+  animation: pastelGlow 8s infinite ease-in-out;
+}
+
+/* ===== Backgrounds ===== */
+.background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 2s ease;
+  z-index: -3;
+}
+
+.bg1 {
+  background-image: url("/assets/background.gif");
+  opacity: 1;
+}
+
+.bg2 {
+  background-image: url("/assets/background2.jpeg");
+  opacity: 0;
+}
+
+.bg2.active {
+  opacity: 1;
+}
+
+.bg1.fade-up {
+  animation: bgFadeUp 2s forwards ease-in-out;
+}
+
+@keyframes bgFadeUp {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+    filter: blur(2px);
+  }
+}
+
+/* ===== Fade Out for First Screen ===== */
+.hero__center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10; /* on top of everything */
+  text-align: center;
+  cursor: pointer; /* indicate user can click */
+}
+
+/* ===== Fancy Fade-Up Animation for Title ===== */
+.hero__center.fade-up {
+  animation: fancyFadeUp 2s forwards ease-in-out;
+}
+
+@keyframes fancyFadeUp {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    text-shadow: 0 0 8px #e7ddff, 0 0 16px #d6b3ff;
+  }
+  50% {
+    transform: translate(-50%, -60%) scale(1.05);
+    opacity: 0.8;
+    text-shadow: 0 0 12px #e7ddff, 0 0 24px #d6b3ff;
+  }
+  100% {
+    transform: translate(-50%, -150%) scale(1);
+    opacity: 0;
+    text-shadow: 0 0 0 #e7ddff, 0 0 0 #d6b3ff;
+  }
+}
+
+/* Hidden by default */
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Show when revealed */
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Show when active */
+.companion.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -45%) scale(1);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+/* === Chat Container === */
+.chat-container {
+  width: 380px;
+  height: 360px;
+  background: rgba(206, 161, 255, 0.057);
+  border-radius: 20px;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0.8rem;
+  margin: auto;
+  align-self: auto;
+  box-shadow: 0 4px 20px rgba(104, 7, 200, 0.116);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+/* === Chat Row Layout === */
+#chatContainer .chat-row {
+  display: flex;
+  width: 100%;
+}
+
+/* Companion rows — left */
+#chatContainer .chat-row.companion {
+  justify-content: flex-start;
+}
+
+/* User rows — right */
+#chatContainer .chat-row.user {
+  justify-content: flex-end;
+}
+
+/* === Chat Bubble (Cute Rounded Style) === */
+#chatContainer .chat-bubble {
+  padding: 0.8rem 1rem;
+  border-radius: 18px;
+  max-width: 75%;
+  font-size: 1rem;
+  line-height: 1.3;
+  word-wrap: break-word;
+  animation: bubblePop 0.35s ease forwards;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* === Companion Bubble (Cute White) === */
+#chatContainer .chat-row.companion .chat-bubble {
+  background: #fff;
+  color: #333;
+  border-radius: 20px 20px 20px 8px; /* cute tail */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* === User Bubble (Soft Blue) === */
+#chatContainer .chat-row.user .chat-bubble {
+  background: linear-gradient(135deg, #a6d6ff, #74b7ff);
+  color: #fff;
+  border-radius: 20px 20px 8px 20px; /* cute tail on right */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* === Bubble Pop Animation === */
+@keyframes bubblePop {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== Companion wrapper (center EVERYTHING) ===== */
+#companionWrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 450px;
+}
+
+/* ===== Center contents INSIDE the wrapper ===== */
+.companion-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  position: relative;
+}
+
+.companion-gif {
+  width: 150px;
+  margin-bottom: 1rem;
+}
+
+/* Input area */
+.mood-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mood-input input {
+  width: 230px;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  font-size: 1rem;
+  backdrop-filter: blur(8px);
+}
+
+.mood-input button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.mood-input button:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Slide + fade out for the title */
+body {
+  animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* === Fade up + disappear animation for title === */
+.brand {
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.brand.fade-up {
+  opacity: 0;
+  transform: translateY(-60px);
+}
+
+/* Floating bubbles container */
+#floatingBubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Each bubble image */
+.bubble {
+  position: absolute;
+  bottom: -60px;
+  width: 50px;
+  height: 50px;
+  background: url("assets/bubble.png") no-repeat center/contain;
+  opacity: 0;
+  animation: floatUp linear infinite;
+  border: none;
+}
+
+/* Float animation (goes up + fades) */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(-110vh) scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120vh) scale(1.1);
+  }
+}
+
+/* Shared style for both right-side buttons */
+.rightside-btn {
+  position: fixed;
+  right: 60px;
+  background: white;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.rightside-btn:hover {
+  transform: scale(1.07);
+}
+
+/* Icon inside button */
+.rightside-btn .icon-img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+/* Specific vertical positions */
+.journal-btn { top: 35%; }
+.tracker-btn { top: 50%; }
+.rs-daily { top: 20%; }
+.rs-music { top: 28%; }
+
+/* ===== Auth Button on main page ===== */
+.auth-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #f2afbc;
+  border: none;
+  color: #9e182b;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  backdrop-filter: blur(8px);
+  transition: background 0.3s ease;
+  z-index: 1000;
+}
+
+.auth-button:hover {
+  background: #f9cbd6;
+  color: #9e182b;
+}
+
+/* Base style for all right-side buttons */
+.rs-item {
+  position: fixed;
+  right: 30px;
+  display: flex;
+  flex-direction: column; /* icon above label */
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  z-index: 10;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0; /* initially hidden */
+}
+
+/* Show after intro */
+.rs-item.revealed {
+  opacity: 1;
+}
+
+/* Specific vertical positions */
+#rs-journal { top: 25%; }
+#rs-tracker { top: 38%; }
+#rs-daily { top: 52%; }
+#rs-music { top: 65%; }
+
+/* Icon style */
+.rs-icon {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  background: white;
+  padding: 12px;
+  border-radius: 30%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* Label below icon */
+.rs-text {
+  margin-top: 10px;
+  padding: 6px 16px;
+  background: #ffffffde;
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  width: max-content;
+  max-width: 90px;
+}
+
+/* Make sure hidden helper does not block reveal */
+.hidden { display: none !important; }
+
+/* === Sidebar === */
+.conversation-sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  background: #f9cbd6;
+  border-right: 2px solid #93182b;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.conversation-sidebar h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #93182b;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.conversation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.conversation-bubble {
+  padding: 0.5rem;
+  background-color: #fff2f3;
+  border: 1px solid #93182b;
+  border-radius: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s, background 0.2s;
+}
+.conversation-bubble:hover {
+  transform: scale(1.05);
+  background-color: #f2afbc;
+  color: #93182b;
+}
+
+/* === Hidden Elements === */
+.hidden { display: none; }
+.revealed { display: block; }
+
+.save-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  margin-top: 10px;
+  background-color: #f9cbd6; /* soft pink background */
+  color: #93182b;             /* dark pink text */
+  border: 2px solid #93182b;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.save-btn:hover {
+  background-color: #f2afbc;  /* lighter pink on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
+
+.save-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 4px rgba(0,0,0,0.1);
+}
+
+.chat-actions {
+  display: flex;
+  gap: 1rem;           /* space between buttons */
+  margin: 1rem 0;
+  justify-content: center; /* center horizontally */
+}
+
+.chat-actions .save-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #93182b;
+  background-color: #f9cbd6;
+  color: #93182b;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.chat-actions .save-btn:hover {
+  background-color: #f2afbc;
+}
